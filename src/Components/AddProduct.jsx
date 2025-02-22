@@ -6,22 +6,21 @@ import "react-toastify/dist/ReactToastify.css";
 const AddProduct = ({ isOpen, onClose }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState(""); // New Category State
-  const [categories, setCategories] = useState([]); // Store categories from API
+  const [category, setCategory] = useState(""); 
+  const [categories, setCategories] = useState([]); 
   const [variants, setVariants] = useState([
     { ram: "", price: "", quantity: "" },
   ]);
   const [images, setImages] = useState([null, null, null]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Fetch categories from API
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/category/GetAll"
+          "https://ecommerce-server-0slo.onrender.com/api/category/GetAll"
         );
-        setCategories(response.data.categories); // Assuming response.data is an array of categories
+        setCategories(response.data.categories); 
       } catch (error) {
         console.error("Error fetching categories:", error);
         toast.error("Failed to load categories.");
@@ -30,7 +29,7 @@ const AddProduct = ({ isOpen, onClose }) => {
     fetchCategories();
   }, []);
 
-  // Handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -63,7 +62,7 @@ const AddProduct = ({ isOpen, onClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/product/add",
+        "https://ecommerce-server-0slo.onrender.com/api/product/add",
         formData,
         {
           headers: {
@@ -114,7 +113,7 @@ const AddProduct = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Category Dropdown */}
+          
           <div className="mb-4 flex flex-col">
             <label htmlFor="category" className="text-lg font-medium mb-2">
               Category
@@ -134,7 +133,7 @@ const AddProduct = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-          {/* Variants */}
+        
           <div className="mb-4">
             <div className="flex justify-between items-center">
               <h3 className="text-xl font-medium mb-2">Variants</h3>
@@ -204,7 +203,7 @@ const AddProduct = ({ isOpen, onClose }) => {
             ))}
           </div>
 
-          {/* Description */}
+          
           <div className="mb-4 flex flex-col">
             <label
               htmlFor="description"
@@ -221,7 +220,7 @@ const AddProduct = ({ isOpen, onClose }) => {
             ></textarea>
           </div>
 
-          {/* Images */}
+          
           <div className="mb-4">
             <label className="block text-lg font-medium mb-2">
               Upload Images (3 images)
