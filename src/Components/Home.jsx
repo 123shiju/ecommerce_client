@@ -19,7 +19,7 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/product/displayAll"
+          "https://ecommerce-server-0slo.onrender.com/api/product/displayAll"
         );
         setProducts(response.data.products);
       } catch (error) {
@@ -35,7 +35,7 @@ const Home = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/category/GetAll"
+          "https://ecommerce-server-0slo.onrender.com/api/category/GetAll"
         );
         setCategories(response.data.categories);
       } catch (error) {
@@ -54,7 +54,7 @@ const Home = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/wishlist/${user._id}`,
+          `https://ecommerce-server-0slo.onrender.com/api/wishlist/${user._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -73,7 +73,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Load cart from localStorage
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(savedCart);
   }, []);
@@ -92,8 +91,8 @@ const Home = () => {
         (item) => item.productId === productId
       );
       const apiUrl = isInWishlist
-        ? "http://localhost:5000/api/wishlist/remove"
-        : "http://localhost:5000/api/wishlist/add";
+        ? "https://ecommerce-server-0slo.onrender.com/api/wishlist/remove"
+        : "https://ecommerce-server-0slo.onrender.com/api/wishlist/add";
 
       await axios.post(
         apiUrl,
@@ -132,7 +131,7 @@ const Home = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/cart/add",
+        "https://ecommerce-server-0slo.onrender.com/api/cart/add",
         { userId: user._id, productId: product._id, quantity: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -168,7 +167,7 @@ const Home = () => {
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold text-center mb-6">Home</h1>
 
-        {/* Search and Category Filter */}
+        
         <div className="mb-6 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <input
             type="text"
