@@ -214,7 +214,7 @@ const Home = () => {
                 </button>
                 <Link to={`/productDetails/${product._id}`}>
                   <img
-                    src={`http://localhost:5000/${product.images[0]}`}
+                    src={`https://ecommerce-server-0slo.onrender.com/${product.images[0]}`}
                     alt={product.title}
                     className="w-full h-48 object-cover mb-4"
                   />
