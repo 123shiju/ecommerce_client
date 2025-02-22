@@ -10,8 +10,8 @@ const CheckoutPage = () => {
   const userId = user?._id;
   const [cart, setCart] = useState({ products: [], cartTotal: 0 });
   const [loading, setLoading] = useState(false);
-  const [orderPlaced, setOrderPlaced] = useState(false); // Track the modal state
-  const [orderId, setOrderId] = useState(null); // Store the order ID for modal
+  const [orderPlaced, setOrderPlaced] = useState(false); 
+  const [orderId, setOrderId] = useState(null); 
 
   useEffect(() => {
     if (userId) {
@@ -22,7 +22,7 @@ const CheckoutPage = () => {
   const fetchCart = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const res = await axios.get(`https://ecommerce-server-0slo.onrender.com/api/cart/${userId}`);
       setCart(res.data.cart);
     } catch (err) {
       toast.error("Failed to load cart. Please try again.");
@@ -35,15 +35,15 @@ const CheckoutPage = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/order/placeOrder`,
+        `https://ecommerce-server-0slo.onrender.com/api/order/placeOrder`,
         {
           userId,
           cart,
-          paymentMethod: "Cash on Delivery", // Hardcoded to COD
+          paymentMethod: "Cash on Delivery", 
         }
       );
-      setOrderId(res.data.orderId); // Set the order ID
-      setOrderPlaced(true); // Show the success modal
+      setOrderId(res.data.orderId); 
+      setOrderPlaced(true); 
       setCart({ products: [], cartTotal: 0 });
     } catch (err) {
       toast.error("Failed to place order. Try again.");
@@ -53,8 +53,8 @@ const CheckoutPage = () => {
   };
 
   const closeOrderSuccessModal = () => {
-    setOrderPlaced(false); // Close the modal
-    navigate(`/order/${orderId}`); // Navigate to the order status page
+    setOrderPlaced(false); 
+    navigate(`/order/${orderId}`); 
   };
 
   return (
