@@ -98,7 +98,7 @@ const ProductDetailsPage = () => {
             onMouseLeave={handleZoom}
           >
             <img
-              src={`https://ecommerce-server-0slo.onrender.com/${product?.images[0]}`}
+              src={`https://ecommerce-server-0slo.onrender.com/${product.images[0]}`}
               alt="Main Product"
               className="w-full h-auto object-cover rounded-lg"
             />
@@ -112,7 +112,7 @@ const ProductDetailsPage = () => {
                 className="border border-gray-300 rounded-lg p-1 cursor-pointer hover:shadow-md"
               >
                 <img
-                  src={`https://ecommerce-server-0slo.onrender.com/${image}`}
+                  src={`https://ecommerce-server-0slo.onrender.com/${product.image}`}
                   alt={`Thumbnail ${index + 1}`}
                   className="w-20 h-20 object-cover rounded-lg"
                 />
