@@ -12,9 +12,9 @@ const OrderTrackingPage = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/order/history/${userId}`
+          `https://ecommerce-server-0slo.onrender.com/api/order/history/${userId}`
         );
-        setOrders(response.data.orders || []); // Fix API response handling
+        setOrders(response.data.orders || []); 
       } catch (err) {
         setError("Failed to load orders.");
       }
@@ -54,7 +54,7 @@ const OrderTrackingPage = () => {
                 {new Date(order.updatedAt).toLocaleString()}
               </p>
 
-              {/* Order Progress Bar */}
+             
               <div className="relative w-full bg-gray-200 h-2 rounded mt-2">
                 <div
                   className={`h-2 rounded ${
