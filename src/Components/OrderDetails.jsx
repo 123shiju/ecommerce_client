@@ -12,10 +12,10 @@ const OrderDetails = () => {
     if (!orderId) return;
 
     axios
-      .get(`http://localhost:5000/api/order/${orderId}`)
+      .get(`https://ecommerce-server-0slo.onrender.com/api/order/${orderId}`)
       .then((response) => {
         console.log("Fetched Order:", response.data);
-        setOrder(response.data.order); // ✅ Ensure correct order object
+        setOrder(response.data.order); 
         setLoading(false);
       })
       .catch((error) => {
@@ -73,7 +73,7 @@ const OrderDetails = () => {
                 {product.productId?.images?.map((image, imgIndex) => (
                   <img
                     key={imgIndex}
-                    src={`http://localhost:5000/${image}`} // Ensure the correct base URL
+                    src={`https://ecommerce-server-0slo.onrender.com/${image}`} 
                     alt={product.productId?.title}
                     className="w-20 h-20 object-cover rounded"
                   />
