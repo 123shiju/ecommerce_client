@@ -151,7 +151,7 @@ const Navbar = () => {
               >
                 <div className="flex items-center space-x-4">
                   <img
-                    src={item.images?.[0] || "/placeholder.png"}
+                    src={`https://ecommerce-server-0slo.onrender.com/${product.images[0]}`}
                     alt={item.title}
                     className="w-16 h-16 object-cover rounded-md"
                   />

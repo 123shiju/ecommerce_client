@@ -26,7 +26,9 @@ const CartPage = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get(`https://ecommerce-server-0slo.onrender.com/api/cart/${userId}`);
+      const res = await axios.get(
+        `https://ecommerce-server-0slo.onrender.com/api/cart/${userId}`
+      );
       setCart(res.data.cart);
     } catch (err) {
       setError("Failed to load cart. Please try again.");
@@ -58,14 +60,17 @@ const CartPage = () => {
             (acc, product) => acc + product.total,
             0
           );
-          setCart(updatedCart); 
+          setCart(updatedCart);
         }
 
-        await axios.post(`https://ecommerce-server-0slo.onrender.com/api/cart/update`, {
-          userId,
-          productId,
-          action,
-        });
+        await axios.post(
+          `https://ecommerce-server-0slo.onrender.com/api/cart/update`,
+          {
+            userId,
+            productId,
+            action,
+          }
+        );
       } catch (err) {
         toast.error("Could not update quantity. Try again.");
       }
@@ -84,12 +89,15 @@ const CartPage = () => {
           (acc, product) => acc + product.total,
           0
         );
-        setCart(updatedCart); 
+        setCart(updatedCart);
 
-        await axios.post(`https://ecommerce-server-0slo.onrender.com/api/cart/remove`, {
-          userId,
-          productId,
-        });
+        await axios.post(
+          `https://ecommerce-server-0slo.onrender.com/api/cart/remove`,
+          {
+            userId,
+            productId,
+          }
+        );
 
         toast.success("Item removed from cart.");
       } catch (err) {
@@ -126,7 +134,7 @@ const CartPage = () => {
                     <td className="p-3 text-center">{product.name}</td>
                     <td className="p-3 text-center">
                       <img
-                        src={`/uploads/${product.image.split("\\").pop()}`}
+                        src={`https://ecommerce-server-0slo.onrender.com/${product.images[0]}`}
                         alt={product.name}
                         className="w-16 h-16 object-cover rounded mx-auto"
                         loading="lazy"
@@ -185,8 +193,8 @@ const CartPage = () => {
                 ? "bg-blue-500 text-white hover:bg-blue-600"
                 : "bg-gray-400 text-gray-700 cursor-not-allowed"
             }`}
-            onClick={handleCheckoutClick} 
-            disabled={!cart.products.length} 
+            onClick={handleCheckoutClick}
+            disabled={!cart.products.length}
           >
             Checkout
           </button>
