@@ -24,8 +24,7 @@ const AuthPage = () => {
     try {
       if (isLogin) {
         const response = await axios.post(
-          // "https://product-management-server-1uuf.onrender.com/api/auth/signin",
-          "http://localhost:5000/api/auth/signin",
+          "https://ecommerce-server-0slo.onrender.com/api/auth/signin",
           { email, password }
         );
 
@@ -41,8 +40,7 @@ const AuthPage = () => {
         }
       } else {
         const response = await axios.post(
-          // "https://product-management-server-1uuf.onrender.com/api/auth/signup",
-          "http://localhost:5000/api/auth/signup",
+          "https://ecommerce-server-0slo.onrender.com/api/auth/signup",
           { email, password, name }
         );
 
