@@ -26,7 +26,7 @@ const CartPage = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+      const res = await axios.get(`https://ecommerce-server-0slo.onrender.com/api/cart/${userId}`);
       setCart(res.data.cart);
     } catch (err) {
       setError("Failed to load cart. Please try again.");
@@ -58,10 +58,10 @@ const CartPage = () => {
             (acc, product) => acc + product.total,
             0
           );
-          setCart(updatedCart); // Update the cart state locally
+          setCart(updatedCart); 
         }
 
-        await axios.post(`http://localhost:5000/api/cart/update`, {
+        await axios.post(`https://ecommerce-server-0slo.onrender.com/api/cart/update`, {
           userId,
           productId,
           action,
@@ -84,9 +84,9 @@ const CartPage = () => {
           (acc, product) => acc + product.total,
           0
         );
-        setCart(updatedCart); // Update the cart state locally
+        setCart(updatedCart); 
 
-        await axios.post(`http://localhost:5000/api/cart/remove`, {
+        await axios.post(`https://ecommerce-server-0slo.onrender.com/api/cart/remove`, {
           userId,
           productId,
         });
@@ -185,8 +185,8 @@ const CartPage = () => {
                 ? "bg-blue-500 text-white hover:bg-blue-600"
                 : "bg-gray-400 text-gray-700 cursor-not-allowed"
             }`}
-            onClick={handleCheckoutClick} // Handle button click
-            disabled={!cart.products.length} // Disable if cart is empty
+            onClick={handleCheckoutClick} 
+            disabled={!cart.products.length} 
           >
             Checkout
           </button>
