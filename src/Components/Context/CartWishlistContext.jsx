@@ -14,7 +14,7 @@ export const CartWishlistProvider = ({ children }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/wishlist/${user._id}`,
+        `https://ecommerce-server-0slo.onrender.com/api/wishlist/${user._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const fetchedWishlist = response.data.wishlist?.products || [];
@@ -31,7 +31,7 @@ export const CartWishlistProvider = ({ children }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/cart/${user._id}`,
+        `https://ecommerce-server-0slo.onrender.com/api/cart/${user._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const totalQuantity = response.data.cart?.products?.reduce(
