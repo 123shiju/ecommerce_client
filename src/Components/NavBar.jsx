@@ -28,7 +28,7 @@ const Navbar = () => {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/wishlist/remove`,
+        `https://ecommerce-server-0slo.onrender.com/api/wishlist/remove`,
         { userId: user._id, productId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
