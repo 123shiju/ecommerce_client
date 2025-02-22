@@ -22,7 +22,7 @@ const AdminPage = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/product/displayAll"
+          "https://ecommerce-server-0slo.onrender.com/api/product/displayAll"
         );
         setProducts(response.data.products);
         setLoading(false);
@@ -38,7 +38,7 @@ const AdminPage = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/category/GetAll"
+          "https://ecommerce-server-0slo.onrender.com/api/category/GetAll"
         );
         setCategories(response.data.categories);
       } catch (error) {
@@ -80,7 +80,7 @@ const AdminPage = () => {
                 className="border p-4 rounded-lg hover:shadow-md transition duration-300"
               >
                 <img
-                  src={`http://localhost:5000/${product.images[0]}`}
+                  src={`https://ecommerce-server-0slo.onrender.com/${product.images[0]}`}
                   alt={product.title}
                   className="w-full h-48 object-cover mb-4 rounded-md"
                 />
