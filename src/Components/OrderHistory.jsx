@@ -6,17 +6,17 @@ const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
-  // Retrieve user from localStorage
+
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user ? user._id : null;
 
   useEffect(() => {
     if (userId) {
       axios
-        .get(`http://localhost:5000/api/order/history/${userId}`)
+        .get(`https://ecommerce-server-0slo.onrender.com/api/order/history/${userId}`)
         .then((response) => {
           console.log("Fetched orders:", response.data);
-          setOrders(response.data.orders || response.data); // Ensure correct structure
+          setOrders(response.data.orders || response.data); 
         })
         .catch((error) =>
           console.error("Error fetching order history:", error)
