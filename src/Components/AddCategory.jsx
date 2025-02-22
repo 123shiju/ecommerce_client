@@ -17,15 +17,14 @@ const AddCategory = ({ show, onClose }) => {
 
     try {
       const response = await axios.post(
-        // "https://product-management-server-1uuf.onrender.com/api/category/Addcategories",
-        "http://localhost:5000/api/category/Addcategories",
+        "https://ecommerce-server-0slo.onrender.com/api/category/Addcategories",
         { categoryName: categoryName }
       );
 
       if (response.status === 201) {
         toast.success("Category added successfully!");
-        setCategoryName(""); // Clear the input field
-        onClose(); // Close the modal
+        setCategoryName(""); 
+        onClose(); 
       }
     } catch (error) {
       toast.error("Failed to add category. Please try again.");
@@ -36,8 +35,8 @@ const AddCategory = ({ show, onClose }) => {
   };
 
   const handleDiscard = () => {
-    setCategoryName(""); // Clear the input field
-    onClose(); // Close the modal
+    setCategoryName(""); 
+    onClose();
   };
 
   if (!show) return null;
