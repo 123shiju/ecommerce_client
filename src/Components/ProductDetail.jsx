@@ -17,7 +17,7 @@ const ProductDetailsPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/product/productDetails/${id}`
+          `https://ecommerce-server-0slo.onrender.com/api/product/productDetails/${id}`
         );
         setProduct(response.data.product);
       } catch (err) {
@@ -51,20 +51,20 @@ const ProductDetailsPage = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       const userId = user?._id;
 
-      const productId = product._id; // The product ID being purchased
+      const productId = product._id; 
       const price = Number(product.variants?.[0]?.price) || 0;
 
       if (!price || price <= 0) {
         return alert("Invalid product price");
       }
 
-      // Make the API call to add the product to the cart
-      const response = await axios.post("http://localhost:5000/api/cart/add", {
+  
+      const response = await axios.post("https://ecommerce-server-0slo.onrender.com/api/cart/add", {
         userId,
         productId,
       });
 
-      // Redirect to the checkout page after adding the product to the cart
+      
       if (response.data) {
         navigate("/checkout", { state: { cart: response.data } });
       }
@@ -87,9 +87,9 @@ const ProductDetailsPage = () => {
   return (
     <>
       <div className="flex flex-col lg:flex-row justify-center p-8 space-y-8 lg:space-x-12 lg:space-y-0">
-        {/* Left Section: Images */}
+       
         <div className="flex flex-col space-y-4 w-full lg:w-1/2">
-          {/* Main Image */}
+          
           <div
             className={`relative border border-gray-300 rounded-lg ${
               zoomed ? "scale-150 transition-all" : "scale-100"
@@ -98,13 +98,13 @@ const ProductDetailsPage = () => {
             onMouseLeave={handleZoom}
           >
             <img
-              src={`http://localhost:5000/${product?.images[0]}`}
+              src={`https://ecommerce-server-0slo.onrender.com/${product?.images[0]}`}
               alt="Main Product"
               className="w-full h-auto object-cover rounded-lg"
             />
           </div>
 
-          {/* Thumbnails */}
+          
           <div className="flex space-x-4 justify-start lg:justify-center">
             {product?.images?.map((image, index) => (
               <div
@@ -112,7 +112,7 @@ const ProductDetailsPage = () => {
                 className="border border-gray-300 rounded-lg p-1 cursor-pointer hover:shadow-md"
               >
                 <img
-                  src={`http://localhost:5000/${image}`}
+                  src={`https://ecommerce-server-0slo.onrender.com/${image}`}
                   alt={`Thumbnail ${index + 1}`}
                   className="w-20 h-20 object-cover rounded-lg"
                 />
@@ -121,19 +121,19 @@ const ProductDetailsPage = () => {
           </div>
         </div>
 
-        {/* Right Section: Product Details */}
+       
         <div className="flex flex-col space-y-4 w-full lg:w-1/2 p-6 border rounded-md shadow-md">
-          {/* Product Title */}
+          
           <h2 className="text-3xl font-semibold text-center">
             {product?.title || "Product Title"}
           </h2>
 
-          {/* Product Price */}
+        
           <div className="text-2xl font-medium text-gray-800 text-center">
             ${finalPrice.toFixed(2)}
           </div>
 
-          {/* Availability */}
+         
           <div
             className={`text-xl ${
               product?.variants?.reduce(
@@ -152,7 +152,7 @@ const ProductDetailsPage = () => {
               : "Out of Stock"}
           </div>
 
-          {/* Product Variants */}
+          
           {product?.variants?.length > 0 && (
             <div>
               <div className="flex space-x-4 mt-2 justify-center">
@@ -174,7 +174,7 @@ const ProductDetailsPage = () => {
             </div>
           )}
 
-          {/* Product Description */}
+        
           <div>
             <h3 className="text-xl font-medium">Description:</h3>
             <p className="text-gray-700">
@@ -182,7 +182,7 @@ const ProductDetailsPage = () => {
             </p>
           </div>
 
-          {/* Quantity Control */}
+         
           <div className="flex items-center justify-center space-x-4">
             <button
               onClick={decreaseQuantity}
