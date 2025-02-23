@@ -51,20 +51,21 @@ const ProductDetailsPage = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       const userId = user?._id;
 
-      const productId = product._id; 
+      const productId = product._id;
       const price = Number(product.variants?.[0]?.price) || 0;
 
       if (!price || price <= 0) {
         return alert("Invalid product price");
       }
 
-  
-      const response = await axios.post("https://ecommerce-server-0slo.onrender.com/api/cart/add", {
-        userId,
-        productId,
-      });
+      const response = await axios.post(
+        "https://ecommerce-server-0slo.onrender.com/api/cart/add",
+        {
+          userId,
+          productId,
+        }
+      );
 
-      
       if (response.data) {
         navigate("/checkout", { state: { cart: response.data } });
       }
@@ -87,9 +88,7 @@ const ProductDetailsPage = () => {
   return (
     <>
       <div className="flex flex-col lg:flex-row justify-center p-8 space-y-8 lg:space-x-12 lg:space-y-0">
-       
         <div className="flex flex-col space-y-4 w-full lg:w-1/2">
-          
           <div
             className={`relative border border-gray-300 rounded-lg ${
               zoomed ? "scale-150 transition-all" : "scale-100"
@@ -104,7 +103,6 @@ const ProductDetailsPage = () => {
             />
           </div>
 
-          
           <div className="flex space-x-4 justify-start lg:justify-center">
             {product?.images?.map((image, index) => (
               <div
@@ -112,7 +110,7 @@ const ProductDetailsPage = () => {
                 className="border border-gray-300 rounded-lg p-1 cursor-pointer hover:shadow-md"
               >
                 <img
-                  src={`https://ecommerce-server-0slo.onrender.com/${product.image}`}
+                  src={`https://ecommerce-server-0slo.onrender.com/${image}`}
                   alt={`Thumbnail ${index + 1}`}
                   className="w-20 h-20 object-cover rounded-lg"
                 />
@@ -121,19 +119,15 @@ const ProductDetailsPage = () => {
           </div>
         </div>
 
-       
         <div className="flex flex-col space-y-4 w-full lg:w-1/2 p-6 border rounded-md shadow-md">
-          
           <h2 className="text-3xl font-semibold text-center">
             {product?.title || "Product Title"}
           </h2>
 
-        
           <div className="text-2xl font-medium text-gray-800 text-center">
             ${finalPrice.toFixed(2)}
           </div>
 
-         
           <div
             className={`text-xl ${
               product?.variants?.reduce(
@@ -152,29 +146,6 @@ const ProductDetailsPage = () => {
               : "Out of Stock"}
           </div>
 
-          
-          {product?.variants?.length > 0 && (
-            <div>
-              <div className="flex space-x-4 mt-2 justify-center">
-                <h3 className="text-xl font-medium">Ram:</h3>
-                {product.variants.map((variant, index) => (
-                  <div
-                    key={index}
-                    className={`w-10 h-6 flex items-center justify-center border cursor-pointer ${
-                      selectedRam === variant.ram
-                        ? "bg-[#eeeeee] text-black border-gray-600"
-                        : "bg-gray-200 text-black-800 border-gray-300"
-                    } hover:bg-gray-300`}
-                    onClick={() => handleRamSelect(variant.ram)}
-                  >
-                    {variant.ram}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-        
           <div>
             <h3 className="text-xl font-medium">Description:</h3>
             <p className="text-gray-700">
@@ -182,7 +153,6 @@ const ProductDetailsPage = () => {
             </p>
           </div>
 
-         
           <div className="flex items-center justify-center space-x-4">
             <button
               onClick={decreaseQuantity}

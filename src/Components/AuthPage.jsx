@@ -66,8 +66,8 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col sm:flex-row w-full h-full bg-white rounded-lg shadow-lg sm:p-8">
+    <div className="flex items-center justify-center min-h-screen w-full overflow-hidden">
+      <div className="flex flex-col sm:flex-row w-full min-h-full bg-white rounded-lg shadow-lg sm:p-8">
         {isLogin ? (
           <>
             <div className="flex flex-col items-center justify-center w-full  p-8 bg-white sm:w-1/2">

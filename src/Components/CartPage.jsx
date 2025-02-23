@@ -134,7 +134,7 @@ const CartPage = () => {
                     <td className="p-3 text-center">{product.name}</td>
                     <td className="p-3 text-center">
                       <img
-                        src={`https://ecommerce-server-0slo.onrender.com/${product.images[0]}`}
+                        src={`https://ecommerce-server-0slo.onrender.com/${product.image}`}
                         alt={product.name}
                         className="w-16 h-16 object-cover rounded mx-auto"
                         loading="lazy"
